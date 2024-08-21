@@ -1,6 +1,8 @@
 ## Description
 
 Cette application est conçue pour faciliter la livraison de repas à domicile pour les personnes à mobilité réduite. Elle est développée en Java 1.8 et ne dépend d'aucun framework tel que Spring. 
+Il s'agit d'une application multi-couche ou les logiques métiers sont séparer de l'accès à la base de donnée et du controller qui envoie les information au front-end.
+Le front end est réaliser en HTML/Javascript avec utilisation de bootstraps
 L'application utilise une base de données MySQL 5.7.36 et est déployée sur un serveur JBoss 7.4.
 
 ## Prérequis
