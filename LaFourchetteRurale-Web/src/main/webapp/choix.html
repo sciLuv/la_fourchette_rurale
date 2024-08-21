@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+</head>
+<body>
+    <div id="header"></div>
+<div class="container">
+
+    <!-- Indicateurs de progression -->
+<div id="progress-indicators">
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+</div>
+
+        <h2>Adhésion</h2>
+        <h3>Choix de l'adhésion</h3>
+    <form id="choixForm" action="choix" method="post">
+
+        <label for="type">Type d'adhésion</label>
+        <select id="type" name="type" required>
+        </select>
+
+        <!-- Ajout du paragraphe pour afficher le texte -->
+<p id="infoAdhesion" class="adhesion-info"></p>
+
+<!-- Ajout du paragraphe pour afficher le texte rouge -->
+<p id="attentionReAdhesion" class="red-text"></p>
+
+<div class="navigation-buttons">
+    <button class="btn btn-secondary" type="button" id="prevPageButton">Page précédente</button>
+    <button class="btn btn-success" type="button" id="nextPageButton">Passer au paiement</button>
+</div>
+
+    </form>
+
+    <p id="choixMessage"></p>
+
+    <script type="module" src="./view/choixView.js"></script>
+</div>
+<div id="footer"></div>
+</body>
+</html>

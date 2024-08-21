@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+</head>
+<body>
+    <div id="header"></div>
+<div class="container">
+
+    <!-- Indicateurs de progression -->
+<div id="progress-indicators">
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator"></div>
+</div>
+
+        <h2>Adhésion</h2>
+        <h3>Information de facturation</h3>
+
+    <form id="facturationForm" action="facturation" method="post">
+
+        <label for="codePostal">Code postal</label>
+        <input type="code" id="codePostal" name="codePostal" required>
+
+        <label for="ville">Ville</label>
+        <input type="ville" id="ville" name="ville" required>
+
+        <label for="rue">Rue</label>
+        <input type="rue" id="rue" name="rue" required>
+
+        <label for="numeroRue">Numéro de rue</label>
+        <input type="num" id="numeroRue" name="numéroRue">
+
+<div class="navigation-buttons">
+    <button class="btn btn-secondary" type="button" id="prevPageButton">Page précédente</button>
+    <button class="btn btn-success" type="submit" id="nextPageButton">Continuer l'Adhésion</button>
+</div>
+
+    </form>
+
+    <p id="facturationMessage"></p>
+    <script type="module" src="./view/facturationView.js"></script>
+</div>
+<div id="footer"></div>
+</body>
+</html>

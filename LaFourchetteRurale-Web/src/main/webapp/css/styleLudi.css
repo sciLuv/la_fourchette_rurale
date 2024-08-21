@@ -1,0 +1,122 @@
+.main-open-menus h4{
+  margin-top : 20px;
+ }
+
+#publication-menu {
+  margin-top : 50px;
+}
+
+
+#choice-config div {
+  display: flex !important;
+  justify-content:flex-start !important;
+  flex : auto !important;
+  flex-wrap : nowrap io !important;
+}
+
+#choice-config span {
+color : #6a1f1f;
+font-weight: 600;
+margin-left : 10px !important;
+margin-right: 30px;
+margin-bottom: 18.72px;
+}
+
+
+.date-config label {
+  margin-top : 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#menu-list {
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+#menu-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+
+}
+#menu-list input {
+    margin-left : 10px;
+}
+
+#menu-list li:hover {
+  background-color: #6a1f1f1f;
+
+}
+
+#menu-list  {
+  padding-left : 20px;
+  list-style-type : none;
+}
+
+.chosen-menu {
+  background-color: #6A1F1F;
+  margin : 5px;
+  padding : 2px 7px;
+  border-radius : 2px ;
+  color : white;
+  cursor: pointer;
+}
+
+ .bouton-supprimer {
+  background-color : transparent;
+  border : none;
+  color : white;
+  padding : 5px;
+  margin : 10px 0px 10px 5px;
+}
+
+.chosenDefaultMenu{
+  background-color : #75BF44;
+}
+
+#validate-diet-meal {
+  color : white;
+  border-radius : 2px;
+  cursor: pointer;
+  background-color : #198754;
+  border : #28b62c;
+  margin : 20px 0px 20px 2px;
+  padding : 5px;
+}
+.btn-Ludi{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+
+#validate-all {
+  color : white;
+  border-radius : 2px;
+  cursor: pointer;
+  background-color : #6a1f1f;
+  border : #6a1f1f;
+  margin : 5px 0px 20px 2px;
+  padding : 5px;
+
+}
+
+#error {
+color : red;
+font-weight: 500;
+}

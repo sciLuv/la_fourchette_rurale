@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container mb-3" >
+        <h2>Paiement d'une facture de commande de repas :</h2>
+        Date de la facture : <span id="paimentDetailOrderDate"></span><br>
+        Montant de la facture : <span id="paimentDetailOrderPrice"></span>
+    </div>
+<div class="container">
+
+        <h2>Paiement par carte</h2>
+
+    <div id="facturationForm">
+
+        <label for="numcarte">Numéro de carte</label>
+        <input type="number" id="numcarte" name="numcarte" required maxlength="16"><br>
+
+        <label for="porteur">Nom du porteur de carte</label><br>
+        <input type="text" id="porteur" name="porteur" required maxlength="20"><br>
+
+        <label for="date">Date de validité</label><br>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="cryptogramme">Cryptogramme</label><br>
+        <input type="number" id="cryptogramme" name="cryptogramme" required maxlength="3" minlength="3">
+
+        <div class="navigation-buttons">
+            <button class="btn btn-secondary" type="button" id="prevPageButton">Page précédente</button>
+            <button class="btn btn-success" id="nextPageButton">Passer au paiement</button>
+        </div>
+        <p id="paiementMessage"></p>
+    </div>
+    <script type="module" src="./view/paymentView.js"></script>
+</div>
+
+<div id="footer"></div>
+</body>
+</html>

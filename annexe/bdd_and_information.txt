@@ -1,0 +1,802 @@
+/*==============================================================*/
+/* Nom de SGBD :  MySQL 5.0                                     */
+/* Date de cr ation :  24/02/2024 18:03:49                      */
+/*==============================================================*/
+
+
+drop table if exists ADH;
+
+drop table if exists Detail_com;
+
+drop table if exists Plat;
+
+drop table if exists Ville;
+
+drop table if exists adhesion;
+
+drop table if exists colis;
+
+drop table if exists commande;
+
+drop table if exists composition_menu;
+
+drop table if exists disponibilite_livraison;
+
+drop table if exists distribuer;
+
+drop table if exists genre;
+
+drop table if exists jour_semaine;
+
+drop table if exists livreur;
+
+drop table if exists menu;
+
+drop table if exists menu_ouvert_selection;
+
+drop table if exists motif_echec_livraison;
+
+drop table if exists prefere;
+
+drop table if exists regime_alimentaire;
+
+drop table if exists specificite_alimentaire;
+
+drop table if exists tournee;
+
+drop table if exists type_adhesion;
+
+drop table if exists type_plat;
+
+drop table if exists type_repas;
+
+/*==============================================================*/
+/* Table : ADH                                                  */
+/*==============================================================*/
+create table ADH
+(
+   id_adherent          bigint not null auto_increment,
+   id_genre             bigint,
+   id_regime_alimentaire bigint,
+   ID_ville             bigint,
+   Vil_ID_ville         bigint,
+   nom                  varchar(254) not null,
+   prenom               varchar(254) not null,
+   mail                 varchar(254) not null,
+   telephone            bigint,
+   naissance            datetime,
+   rue_livraison        varchar(254),
+   information_supplementaire varchar(254),
+   adresse_facture      varchar(254),
+   mot_de_passe         varchar(254),
+   numero_carte_bancaire bigint,
+   date_validite_carte_bancaire datetime,
+   nom_porteur_carte_bancaire varchar(254),
+   role      varchar(254),
+   primary key (id_adherent)
+);
+
+/*==============================================================*/
+/* Table : Detail_com                                           */
+/*==============================================================*/
+create table Detail_com
+(
+   Id_detail_com        bigint not null auto_increment,
+   id_colis             bigint not null,
+   id_commande          bigint not null,
+   id_plat              bigint,
+   id_menu_ouvert_selection bigint,
+   Pla_id_plat          bigint,
+   Pla_id_plat2         bigint,
+   Date_choix           datetime,
+   date_validation_choix datetime,
+   date_effective_repas datetime,
+   Date_de_reglement    datetime,
+   date_emission_facture datetime,
+   primary key (Id_detail_com)
+);
+
+/*==============================================================*/
+/* Table : Plat                                                 */
+/*==============================================================*/
+create table Plat
+(
+   id_plat              bigint not null auto_increment,
+   id_regime_alimentaire bigint,
+   id_type_plat         bigint,
+   nom_plat             varchar(254),
+   description          varchar(254),
+   url_image            varchar(254),
+   date_entree          datetime,
+   date_retrait         datetime,
+   primary key (id_plat)
+);
+
+/*==============================================================*/
+/* Table : Ville                                                */
+/*==============================================================*/
+create table Ville
+(
+   ID_ville             bigint not null auto_increment,
+   Nom_ville            varchar(254),
+   CP_ville             bigint,
+   date_integ           datetime,
+   date_sortie          datetime,
+   primary key (ID_ville)
+);
+
+/*==============================================================*/
+/* Table : adhesion                                             */
+/*==============================================================*/
+create table adhesion
+(
+   id_adhesion          bigint not null auto_increment,
+   id_type_adhesion     bigint not null,
+   id_adherent          smallint not null,
+   debut                datetime,
+   fin_prevu            datetime,
+   fin_effective        datetime,
+   date_paiement        datetime,
+   date_emission_facture datetime,
+   primary key (id_adhesion)
+);
+
+/*==============================================================*/
+/* Table : colis                                                */
+/*==============================================================*/
+create table colis
+(
+   id_colis             bigint not null auto_increment,
+   id_echec_livraison   bigint,
+   id_tournee           bigint,
+   livraison_prevu      datetime,
+   livraison_effective  datetime,
+   numero_colis         varchar(254),
+   primary key (id_colis)
+);
+
+/*==============================================================*/
+/* Table : commande                                             */
+/*==============================================================*/
+create table commande
+(
+   id_commande          bigint not null auto_increment,
+   id_adherent          smallint not null,
+   id_menu              bigint, /* chose a virer */
+   validation_com       datetime,
+   annulation_com       datetime,
+   primary key (id_commande)
+);
+
+/*==============================================================*/
+/* Table : composition_menu                                     */
+/*==============================================================*/
+create table composition_menu
+(
+   id_compo             bigint not null auto_increment,
+   id_plat              bigint not null,
+   id_menu              bigint not null,
+   date_composition     datetime,
+   primary key (id_compo)
+);
+
+/*==============================================================*/
+/* Table : disponibilite_livraison                              */
+/*==============================================================*/
+create table disponibilite_livraison
+(
+   id_disponibilite_livraison bigint not null auto_increment,
+   id_adherent          bigint,
+   id_jour              bigint,
+   Date_de_choix        datetime,
+   Date_de_retrait      datetime,
+   primary key (id_disponibilite_livraison)
+);
+
+/*==============================================================*/
+/* Table : distribuer                                           */
+/*==============================================================*/
+create table distribuer
+(
+   ID_ville             bigint not null auto_increment,
+   id_tournee           bigint not null,
+   primary key (ID_ville, id_tournee)
+);
+
+/*==============================================================*/
+/* Table : genre                                                */
+/*==============================================================*/
+create table genre
+(
+   id_genre             bigint not null auto_increment,
+   libelle_genre        varchar(254),
+   primary key (id_genre)
+);
+
+/*==============================================================*/
+/* Table : jour_semaine                                         */
+/*==============================================================*/
+create table jour_semaine
+(
+   id_jour              bigint not null auto_increment,
+   libelle_jour         varchar(254),
+   primary key (id_jour)
+);
+
+/*==============================================================*/
+/* Table : livreur                                              */
+/*==============================================================*/
+create table livreur
+(
+   id_livreur           bigint not null auto_increment,
+   nom                  varchar(254),
+   prenom               varchar(254),
+   mail                 varchar(254),
+   mot_de_passe         varchar(254),
+   role      varchar(50),
+   primary key (id_livreur)
+);
+
+/*==============================================================*/
+/* Table : menu                                                 */
+/*==============================================================*/
+create table menu
+(
+   id_menu              bigint not null auto_increment,
+   Caracteristique_type varchar(254),
+   nom                  varchar(254),
+   creation             datetime,
+   retrait              datetime,
+   primary key (id_menu)
+);
+
+/*==============================================================*/
+/* Table : menu_ouvert_selection                                */
+/*==============================================================*/
+create table menu_ouvert_selection
+(
+   id_menu_ouvert_selection bigint not null auto_increment,
+   id_type_repas        bigint not null,
+   id_menu              bigint not null,
+   ouverture_selection  datetime,
+   fermeture_selection  datetime,
+   menu_defaut          bool,
+   position_jour        bigint,
+   primary key (id_menu_ouvert_selection)
+);
+
+/*==============================================================*/
+/* Table : motif_echec_livraison                                */
+/*==============================================================*/
+create table motif_echec_livraison
+(
+   id_echec_livraison   bigint not null auto_increment,
+   motif                varchar(254),
+   primary key (id_echec_livraison)
+);
+
+/*==============================================================*/
+/* Table : prefere                                              */
+/*==============================================================*/
+create table prefere
+(
+   id_adherent              bigint not null auto_increment,
+   id_specificite_alimentaire bigint not null,
+   primary key (id_adherent, id_specificite_alimentaire)
+);
+
+/*==============================================================*/
+/* Table : regime_alimentaire                                   */
+/*==============================================================*/
+create table regime_alimentaire
+(
+   id_regime_alimentaire bigint not null auto_increment,
+   nom                  varchar(254),
+   debut_prise_en_charge datetime,
+   fin_prise_en_charge  datetime,
+   primary key (id_regime_alimentaire)
+);
+
+/*==============================================================*/
+/* Table : specificite_alimentaire                              */
+/*==============================================================*/
+create table specificite_alimentaire
+(
+   id_specificite_alimentaire bigint not null auto_increment,
+   nom                  varchar(254),
+   debut_prise_en_charge datetime,
+   fin_prise_en_charge  datetime,
+   primary key (id_specificite_alimentaire)
+);
+
+/*==============================================================*/
+/* Table : tournee                                              */
+/*==============================================================*/
+create table tournee
+(
+   id_tournee           bigint not null auto_increment,
+   id_livreur           bigint not null,
+   date                 datetime,
+   debut_tournee        datetime,
+   fin_tournee          datetime,
+   primary key (id_tournee)
+);
+
+/*==============================================================*/
+/* Table : type_adhesion                                        */
+/*==============================================================*/
+create table type_adhesion
+(
+   id_type_adhesion     bigint not null auto_increment,
+   typ_id_type_adhesion bigint,
+   nom                  varchar(254),
+   duree                bigint,
+   tarif                bigint,
+   date_de_fin_validite datetime,
+   primary key (id_type_adhesion)
+);
+
+/*==============================================================*/
+/* Table : type_plat                                            */
+/*==============================================================*/
+create table type_plat
+(
+   id_type_plat         bigint not null auto_increment,
+   typ_id_type_plat     bigint,
+   type_plat            varchar(254),
+   tarif                bigint,
+   Date_de_retrait      datetime,
+   primary key (id_type_plat)
+);
+
+/*==============================================================*/
+/* Table : type_repas                                           */
+/*==============================================================*/
+create table type_repas
+(
+   id_type_repas        bigint not null auto_increment,
+   libelle_repas        national char(1),
+   primary key (id_type_repas)
+);
+
+alter table ADH add constraint FK_est foreign key (id_genre)
+      references genre (id_genre) on delete restrict on update restrict;
+
+alter table ADH add constraint FK_facturer foreign key (Vil_ID_ville)
+      references Ville (ID_ville) on delete restrict on update restrict;
+
+alter table ADH add constraint FK_livrer foreign key (ID_ville)
+      references Ville (ID_ville) on delete restrict on update restrict;
+
+alter table ADH add constraint FK_restreindre foreign key (id_regime_alimentaire)
+      references regime_alimentaire (id_regime_alimentaire) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_choisir foreign key (id_menu_ouvert_selection)
+      references menu_ouvert_selection (id_menu_ouvert_selection) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_comporte foreign key (id_commande)
+      references commande (id_commande) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_comporter foreign key (id_colis)
+      references colis (id_colis) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_debuter foreign key (Pla_id_plat2)
+      references Plat (id_plat) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_finir foreign key (Pla_id_plat)
+      references Plat (id_plat) on delete restrict on update restrict;
+
+alter table Detail_com add constraint FK_manger foreign key (id_plat)
+      references Plat (id_plat) on delete restrict on update restrict;
+
+alter table Plat add constraint FK_designer foreign key (id_type_plat)
+      references type_plat (id_type_plat) on delete restrict on update restrict;
+
+alter table Plat add constraint FK_respecter foreign key (id_regime_alimentaire)
+      references regime_alimentaire (id_regime_alimentaire) on delete restrict on update restrict;
+
+alter table adhesion add constraint FK_choisi foreign key (id_adherent)
+      references ADH (id_adherent) on delete restrict on update restrict;
+
+alter table adhesion add constraint FK_correspondre foreign key (id_type_adhesion)
+      references type_adhesion (id_type_adhesion) on delete restrict on update restrict;
+
+alter table colis add constraint FK_definir foreign key (id_echec_livraison)
+      references motif_echec_livraison (id_echec_livraison) on delete restrict on update restrict;
+
+alter table colis add constraint FK_transporter foreign key (id_tournee)
+      references tournee (id_tournee) on delete restrict on update restrict;
+
+alter table commande add constraint FK_Association_11 foreign key (id_menu)
+      references menu (id_menu) on delete restrict on update restrict;
+
+alter table commande add constraint FK_passer foreign key (id_adherent)
+      references ADH (id_adherent) on delete restrict on update restrict;
+
+alter table composition_menu add constraint FK_composer foreign key (id_menu)
+      references menu (id_menu) on delete restrict on update restrict;
+
+alter table composition_menu add constraint FK_integrer foreign key (id_plat)
+      references Plat (id_plat) on delete restrict on update restrict;
+
+alter table disponibilite_livraison add constraint FK_disponible foreign key (id_adherent)
+      references ADH (id_adherent) on delete restrict on update restrict;
+
+alter table disponibilite_livraison add constraint FK_pointer foreign key (id_jour)
+      references jour_semaine (id_jour) on delete restrict on update restrict;
+
+alter table distribuer add constraint FK_distribuer foreign key (ID_ville)
+      references Ville (ID_ville) on delete restrict on update restrict;
+
+alter table distribuer add constraint FK_distribuer foreign key (id_tournee)
+      references tournee (id_tournee) on delete restrict on update restrict;
+
+alter table menu_ouvert_selection add constraint FK_Association_13 foreign key (id_menu)
+      references menu (id_menu) on delete restrict on update restrict;
+
+alter table menu_ouvert_selection add constraint FK_correspond foreign key (id_type_repas)
+      references type_repas (id_type_repas) on delete restrict on update restrict;
+
+alter table prefere add constraint FK_prefere foreign key (id_adherent)
+      references ADH (id_adherent) on delete restrict on update restrict;
+
+alter table prefere add constraint FK_prefere foreign key (id_specificite_alimentaire)
+      references specificite_alimentaire (id_specificite_alimentaire) on delete restrict on update restrict;
+
+alter table tournee add constraint FK_livrer foreign key (id_livreur)
+      references livreur (id_livreur) on delete restrict on update restrict;
+
+alter table type_adhesion add constraint FK_remplace foreign key (typ_id_type_adhesion)
+      references type_adhesion (id_type_adhesion) on delete restrict on update restrict;
+
+alter table type_plat add constraint FK_remplacer foreign key (typ_id_type_plat)
+      references type_plat (id_type_plat) on delete restrict on update restrict;
+
+
+INSERT INTO genre (libelle_genre) VALUES
+('homme'),
+('femme'),
+('autre');
+
+INSERT INTO `regime_alimentaire` (`id_regime_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (1, 'Défaut', '2024-01-01 00:00:00', NULL);
+INSERT INTO `regime_alimentaire` (`id_regime_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (2, 'Végétarien', '2024-01-01 00:00:00', NULL);
+INSERT INTO `regime_alimentaire` (`id_regime_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (3, 'Sans porc', '2024-01-01 00:00:00', NULL);
+
+INSERT INTO `specificite_alimentaire` (`id_specificite_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (1, 'sans spécificité', '2024-01-01 00:00:00', NULL);
+INSERT INTO `specificite_alimentaire` (`id_specificite_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (2, 'appauvrit en sucre', '2024-01-01 00:00:00', NULL);
+INSERT INTO `specificite_alimentaire` (`id_specificite_alimentaire`, `nom`, `debut_prise_en_charge`, `fin_prise_en_charge`) VALUES (3, 'appauvrit en sel', '2024-01-01 00:00:00', NULL);
+
+INSERT INTO type_repas (libelle_repas) VALUES
+('1'),
+('2');
+
+INSERT INTO livreur (nom, prenom, mail, mot_de_passe) VALUES
+('Dupont', 'Antoine', 'mail@mail.com', 'DA123' ),
+('Leclerc', 'Marie ', 'mail@mail.com', 'LM123'),
+('Martin', 'Julien', 'mail@mail.com', 'MJ123');
+
+INSERT INTO type_plat (typ_id_type_plat, type_plat, tarif, Date_de_retrait) VALUES
+(NULL, 'entrée', '5', NULL),
+(NULL, 'plat_principal', '11', NULL),
+(NULL, 'dessert', '4', NULL);
+
+INSERT INTO type_adhesion (typ_id_type_adhesion, nom, duree, tarif) VALUES
+(NULL, 'mensuelle', 30, 10),
+(NULL, 'annuelle', 365, 100);
+
+INSERT INTO motif_echec_livraison (motif) VALUES
+('Adhérent absent'),
+('Adresse introuvable'),
+('Colis endommagé'),
+('Refus du colis'),
+('Problème d’accès à l’adresse');
+
+
+INSERT INTO colis (id_echec_livraison, id_tournee, livraison_prevu, livraison_effective, numero_colis) VALUES
+(null, null, '2024-01-03', '2024-01-04', 1),
+(null, null, '2024-01-03', '2024-01-03', 2),
+(null, null, '2024-01-03', '2024-01-05', 3);
+
+INSERT INTO jour_semaine (libelle_jour) VALUES
+('lundi'),
+('Mercredi'),
+('Vendredi');
+
+INSERT INTO ADH (nom, prenom, mail, mot_de_passe) VALUES
+('Dupont', 'Jean', 'jean.dupont@example.com', 'motdepasse1'),
+('Martin', 'Marie', 'marie.martin@example.com', 'motdepasse2'),
+('Dubois', 'Pierre', 'pierre.dubois@example.com', 'motdepasse3'),
+('Lefebvre', 'Sophie', 'sophie.lefebvre@example.com', 'motdepasse4'),
+('Moreau', 'Julie', 'julie.moreau@example.com', 'motdepasse5');
+
+
+INSERT INTO ADH (id_genre, id_regime_alimentaire, ID_ville, Vil_ID_ville, nom, prenom, mail, telephone, naissance, rue_livraison, information_supplementaire, adresse_facture, mot_de_passe, numero_carte_bancaire, date_validite_carte_bancaire, nom_porteur_carte_bancaire)
+VALUES
+(1, 1, 1, 1, 'Dupont', 'Jean', 'jean.dupont@example.com', 0234567890, '1980-05-15', '123 Rue de la Liberté', 'Informations supplémentaires pour Jean', '123 Rue de la Facturation', 'motdepasseJean123', 1234567890123456, '2026-01-01', 'Jean Dupont'),
+(2, 2, 2, 2, 'Martin', 'Marie', 'marie.martin@example.com', 0876543210, '1975-09-20', '456 Avenue de la Paix', 'Informations supplémentaires pour Marie', '456 Avenue de la Facturation', 'motdepasseMarie456', 6543210987654321, '2027-03-01', 'Marie Martin'),
+(1, 1, 1, 1, 'Dubois', 'Pierre', 'pierre.dubois@example.com', 0567890123, '1983-03-10', '789 Boulevard de la République', 'Informations supplémentaires pour Pierre', '789 Boulevard de la Facturation', 'motdepassePierre789', 9876543210987654, '2028-02-15', 'Pierre Dubois');
+
+
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 1, '2024-02-17 12:21:09', '2024-03-17 12:21:25', '2024-03-07 12:23:44', NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (2, 2, '2024-02-24 12:24:53', '2025-02-24 12:28:07', NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 3, '2024-02-25 12:27:27', '2024-03-25 12:28:54', '2024-02-27 12:29:05', NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 4, '2024-02-26 12:28:41', '2024-03-26 12:30:03', NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (2, 5, '2024-02-27 12:31:29', NULL, NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 6, '2023-02-17 12:31:47', NULL, NULL, NULL, NULL);
+
+INSERT INTO menu_ouvert_selection (id_type_repas, id_menu, ouverture_selection, fermeture_selection, menu_defaut, position_jour)
+VALUES
+/* repas végétarien par défaut */
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 1),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 1),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 2),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 2),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 3),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 3),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 4),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 4),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 5),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 5),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 6),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 6),
+(1, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 7),
+(2, 1, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 7),
+/* autre repas végétarien */
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 1),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 1),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 2),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 2),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 3),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 3),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 4),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 4),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 5),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 5),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 6),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 6),
+(1, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 7),
+(2, 3, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 7),
+
+/* menu sans régime spécifique par défaut*/
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 1),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 1),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 2),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 2),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 3),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 3),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 4),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 4),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 5),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 5),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 6),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 6),
+(1, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 7),
+(2, 2, '2024-02-26 00:00:01', '2024-03-14 23:59:59', TRUE, 7),
+
+/* menu sans régime spécifique autre*/
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 1),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 1),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 2),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 2),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 3),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 3),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 4),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 4),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 5),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 5),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 6),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 6),
+(1, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 7),
+(2, 4, '2024-02-26 00:00:01', '2024-03-14 23:59:59', FALSE, 7),
+
+(1, 5, '2024-03-15 00:00:01', '2024-03-16 23:59:59', FALSE, 3),
+(2, 6, '2024-03-15 00:00:01', '2024-03-16 23:59:59', TRUE, 3),
+(1, 7, '2024-03-15 00:00:01', '2024-03-16 23:59:59', TRUE, 4),
+(2, 8, '2024-03-15 00:00:01', '2024-03-16 23:59:59', FALSE, 4);
+
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (6, 1, '2024-02-24 12:34:38', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (2, 2, '2024-02-25 12:34:55', '2024-02-26 12:34:59');
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (2, 3, '2024-02-26 12:37:26', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (3, 4, '2024-02-27 12:37:50', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 5, '2024-02-27 12:38:50', '2024-02-27 13:39:13');
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 1, '2024-02-27 13:45:35', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 2, '2024-02-27 12:40:45', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 5, '2024-02-27 12:41:56', NULL);
+
+
+-- Avec toutes les informations nécessaires
+INSERT INTO tournee (id_livreur, date, debut_tournee, fin_tournee) VALUES
+(1, '2024-02-27', '2024-02-27 08:00:00', '2024-02-27 12:00:00'),
+(2, '2024-02-28', '2024-02-28 09:00:00', '2024-02-28 14:00:00');
+
+-- Sans fin_tournée
+INSERT INTO tournee (id_livreur, date, debut_tournee) VALUES
+(3, '2024-03-01', '2024-03-01 10:00:00'),
+(4, '2024-03-02', '2024-03-02 11:00:00');
+
+-- Sans début_tournée et fin_tournee
+INSERT INTO tournee (id_livreur, date) VALUES
+(5, '2024-03-03'),
+(6, '2024-03-04');
+
+-- Autres exemples
+INSERT INTO tournee (id_livreur, date, debut_tournee) VALUES
+(7, '2024-03-05', '2024-03-05 08:30:00'),
+(8, '2024-03-06', '2024-03-06 09:00:00');
+
+
+INSERT INTO distribuer (ID_ville, id_tournee) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 3),
+(4, 4);
+INSERT INTO prefere (id_adherent, id_specificite_alimentaire) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 3),
+(4, 1);
+
+INSERT INTO detail_com (id_colis, id_commande, id_plat, id_menu_ouvert_selection, Pla_id_plat, Pla_id_plat2, Date_choix, date_validation_choix, date_effective_repas, Date_de_reglement, date_emission_facture) VALUES
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-06-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-09-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2023-09-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-09-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-03-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-03-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-03-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', NULL, '2024-03-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', NULL, '2024-02-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', NULL, '2024-02-10'),
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', NULL, '2024-02-10'),
+(2, 2, 5, 2, 2, 2, '2024-01-05','2024-01-05', '2024-01-08', NULL, '2024-02-10'),
+(3, 3, 8, 3, 3, 3, '2024-01-05', '2024-01-05', '2024-01-08', NULL, '2024-02-10');
+
+
+INSERT INTO disponibilite_livraison (id_jour, Date_de_choix, Date_de_retrait) VALUES
+(1, '2024-02-27 08:00:00', null),
+(2, '2024-02-28 09:00:00', '2024-02-28 14:00:00'),
+(3, '2024-02-29 10:00:00', '2024-02-29 13:00:00'),
+(1, '2024-02-27 08:30:00', null),
+(2, '2024-02-28 10:00:00', '2024-02-28 13:00:00'),
+(3, '2024-02-29 11:00:00', '2024-02-29 14:00:00'),
+(1, '2024-02-27 09:00:00', null),
+(2, '2024-02-28 11:00:00', '2024-02-28 15:00:00'),
+(3, '2024-02-29 12:00:00', '2024-02-29 16:00:00');
+
+
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (25, 13, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (26, 21, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (27, 20, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (3, 3, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (2, 2, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (1, 1, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (6, 6, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (5, 5, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (4, 4, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (13, 10, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (14, 12, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (15, 6, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (17, 14, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (18, 15, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (16, 13, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (19, 16, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (20, 17, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (21, 18, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (22, 7, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (23, 19, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (24, 20, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (9, 9, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (8, 8, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (7, 7, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (12, 3, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (11, 11, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (10, 10, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (28, 22, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (29, 23, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (30, 3, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (31, 24, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (32, 25, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (33, 15, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (34, 26, 12, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (35, 27, 12, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_compo`, `id_plat`, `id_menu`, `date_composition`) VALUES (36, 28, 12, '2024-01-01 00:00:00');
+
+
+
+
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (2, 'Défaut', 'Délices de la Mer', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (3, 'Défaut', 'La Viande à l\'Honneur', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (8, 'Défaut', 'Héritage Normand', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (9, 'Défaut', 'Le Cassoulet à l\'Honneur', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (4, 'Sans porc', 'Expérience Tendre et Croustillante', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (5, 'Sans porc', 'Saveurs Orientales', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (6, 'Sans porc', 'Délices Mexicains', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (7, 'Sans porc', 'Terroir et Saveurs', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (1, 'Végétarien', 'Plaisir de la Nature', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (10, 'Végétarien', 'Végétalien et Gourmand', '2024-03-09 11:37:09', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (11, 'Végétarien', 'Voyage Végétarien aux Saveurs d\'Orient', '2024-01-01 00:00:00', NULL);
+INSERT INTO `menu` (`Caracteristique_type`, `nom`, `creation`, `retrait`) VALUES (12, 'Végétarien', 'Un Festin Italien Végétarien ', '2024-01-01 00:00:00', NULL);
+
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Rillettes de Porc aux Algues', 'Rillettes de porc associée à la frâicheur des lagues et relevées avec du poivre dulse.', 'https://recettes.de/images/blogs/une-aiguille-dans-l-potage/rillettes-de-thon-aux-algues.640x480.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Dos de cabillaud et Sauce Choron', 'Dos de cabilllaud cuit au four accompagné de sa sauce choron préparée avec une  béchamel, du jaune d\'oeuf et du jus de tomate.', 'https://img.cuisineaz.com/660x660/2022/06/06/i184175-41-dos-de-cabillaud-au-four.jpeg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 3, 'Salade de Fruits de Saison', 'Fruits de saison accompagnés d\'une touche de frâicheur avec des feuilles de menthe.', 'https://i.f1g.fr/media/cms/1200x630_crop/2022/07/15/ea00d278dc710b675a1fd7bf08b8dfdba3ff8b73396f9faaaa963d58454801c9.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Croustillant de Pieds de Porc à la Crème d\'Ail et Ciboulette', 'Pieds de porc : partie souvent oubliée du porc, sublimée par une crème d\'ail et ciboulette. ', 'https://adc-dev-images-recipes.s3.eu-west-1.amazonaws.com/REP_jl_11412_croustillant_pied_porc_sauce_tartare.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Épaule de Porc Rôtie aux Pommes de Terre et Herbes', 'Épaule de porc tendre accompagnée de ses pommes de terre fondantes.', 'https://epicesdecru.com//upload/recettes/epaule-porc-frais.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 3, 'Crumble aux Pommes', 'Crumble aux pommes léger et croustillant.', 'https://www.edelices.com/wordpress/wp-content/uploads/2015/01/Pomme-cannelle_1.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Croustillant de Camembert aux Noix et Confiture de Poires', 'Un mariage gourmand entre la chaleur du camembert fondu, le croquant des noix et la douceur de la confiture de poires.', 'https://recette-cuisine.net/wp-content/uploads/2020/04/Camembert-chaud-aux-poires-et-noix.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Tendre Escalope de Porc Normande à la Crème et Champignons', 'Escalope de porc fondante accompagnée d\'une sauce crémeuse aux champignons de Paris, rehaussée d\'une touche de Calvados pour une saveur authentique.', 'https://stephaniehurtubise.files.wordpress.com/2021/10/porc_champignon.jpg?w=640', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 3, 'Tarte Tatin aux Pommes', 'Dessert classique pour une fin de repas fruitée.', 'https://img.cuisineaz.com/660x660/2016/10/08/i94576-tarte-tatin-aux-pommes.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Salade de Saison aux Oeufs Mimosa', 'Salade accompagnée des légumes frais de saison associée à la gourmandise des oeufs mimosa.', 'https://www.laylita.com/recettes/wp-content/uploads/2016/08/oeufs-mimosa-au-crabe-640x426.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Cassoulet Gourmand aux Saucisses et Lardons', 'Cassoulet généreux et savoureux, mijoté avec des haricots blancs, des saucisses de Toulouse, des lardons fumés, des carottes et des oignons.', 'https://img-3.journaldesfemmes.fr/9UAyHePOGIjMQYqRCXIu9mYjWYs=/225x150/smart/6e2d241d560a4726a1fdb3644646912b/ccmcms-jdf/39871588.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 2, 'Poulet Frit Croustillant à la Chapelure Panko', 'Poulet frit enrobé d\'une chapelure panko dorée et croustillante, accompagné de sa purée de pomme de terre crémeuse.', 'https://www.lapetitechronique.com/wp-content/uploads/2020/10/Poulet-Katsu.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 1, 'Houmous aux Crudités et Pain Pita', 'Purée onctueuse et savoureuse à base de pois chiches, de citron et d\'ail à savourer avec le pain pita.', 'https://img.cuisineaz.com/660x660/2013/12/20/i76796-hummus-et-pain-pita-maison.jpeg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 2, 'Tajine de Poulet aux Légumes et Semoule', 'Plat mijoté traditionnellement, accompagné de carottes, de pommes de terre, de poivrons, et d\'oignons.', 'https://assets.afcdn.com/recipe/20170303/8755_w1024h1024c1cx2654cy1771.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 3, 'Baklava aux Noix et Miel', 'Pâtisserie orientale croustillante et sucrée.', 'https://www.laurentmariotte.com/wp-content/uploads/2022/11/whatsapp-image-2022-10-24-at-094617.jpeg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 1, 'Guacamole et Tortillas', 'Purée onctueuse et savoureuse à base d\'avocats, de tomates, d\'oignons, de coriandre et de citron vert à savourer avec les tortillas chips.', 'https://d1e3z2jco40k3v.cloudfront.net/-/media/project/oneweb/cho21/recipes/guac-with-cholula-chips-desktop.jpg?rev=-1&vd=00010101T000000Z&hash=0C58EA4EAC4B7D20BBBA02F5DB1A8A01', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 2, 'Fajitas au Poulet et Légumes Grillés', 'Tortillas de maïs garnies de poulet et de légumes grillés de saison.', 'https://img.cuisineaz.com/660x660/2015/06/30/i91097-fajitas-au-poulet-et-aux-legumes.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 3, 'Churros Allégés', 'Beignets légèrement parfumés à la cannelle.', 'https://cac.img.pmdstatic.net/scale/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2Fcac.2F2018.2F09.2F25.2Fd1178977-0718-4fde-b2ed-d081bc932e5d.2Ejpeg/autox450/quality/65/churros-sans-huile.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 2, 'Cocotte de Poulet à la Normande et aux Champignons', 'Poulet mijoté avec des pommes, des oignons, des champignons et du cidre non alcoolisé. ', 'https://www.undejeunerdesoleil.com/wp-content/uploads/2021/10/Poulet_creme_champignons_recette.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 3, 'Tarte Normande aux Pommes', 'Dessert traditionnel gourmand.', 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNSl5iOAARXilTzX23lhc2sqCJkbGrLv71i2FkSGO7gqYmQJcBC2Ry1If8SDd-NE7YJ3KRL49vNBQb7fWwSgHgZZJEZ1Ngf5m9Ma0KRr8vg84U10nlxsgmQhkELR4U1AKHDwznQHPmD7A/s16000/tarte-normande-pommes-facile.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Risotto aux Champignons', 'Plat gourmand et parfumé, associant la texture crémeuse du risotto à la saveur intense des champignons, et asorti de légumes de saison.', 'https://img.passeportsante.net/1200x675/2021-03-29/i101004-.webp', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 1, 'Brochettes de Champignons à l\'Ail et au Persil', 'Champignons de Paris marinés avec de l\'ail et du persil puis grillés.', 'https://www.lidl-recettes.fr/var/site/storage/images/_aliases/960x540/2/0/7/7/87702-3-fre-FR/Brochettes-de-champignons-a-l-ail.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Quiche Végétalienne aux Oignons', 'Pâte brisée maison sans beurre accueille un appareil onctueux de tofu soyeux, de lait végétal et d’oignons caramélisés.', 'https://dubiodansmonbento.com/wp-content/uploads/2019/06/quicheveganoignon6-640x550.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 1, 'Salade Fattouche', 'Entrée rafraîchissante composée de tomates, concombres, radis, et oignons rouges, agrémentée de morceaux de pain pita grillé.', 'https://www.papillesetpupilles.fr/wp-content/uploads/2005/11/Salade-fattouch-%C2%A9-Louno-Morose-shutterstock.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Dahl de Lentilles Corail', 'Lentilles corail tendres, mijotées dans un mélange de lait de coco, de tomates, d’oignons, d’ail, et d’un bouquet d’épices orientales comme le curry, le curcuma et le gingembre. Servi avec un accompagnement de riz basmati.', 'https://yummix.fr/wp-content/uploads/2017/03/dhal-de-lentille-corail-1024x683.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 1, 'Bruschetta aux Tomates et Basilic', 'Tranches de pain grillé frottées à l’ail et garnies de tomates fraîches coupées en dés, de basilic émincée et d’un filet d’huile d’olive extra vierge.', 'https://epicetoorecettes.fr/img/recettes/grande/recette-bruschetta-la-tomate-et-au-basilic.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Risotto aux Lentilles Corail et Légumes Grillés', 'Risotto crémeux de lentilles corail accompagné de légumes grillés de saison, le tout saupoudré de parmesan végétal pour une finition riche et savoureuse.', 'https://www.myrtee.fr/wp-content/uploads/2015/06/image33.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 3, ' Panna Cotta Végétalienne à la Vanille et Coulis de Fruits Rouges', 'Panna cotta onctueuse à base de lait d’avoine et de crème de soja, parfumée à la vanille et nappée d’un coulis de fruits rouges frais.', 'https://www.auxdelicesdupalais.net/wp-content/uploads/2020/08/panna-cotta-2.jpg', '2024-01-01 00:00:00', NULL);
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 13, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 21, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 20, 1, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 3, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 2, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 1, 2, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 6, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 5, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 4, 3, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 10, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 12, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 6, 4, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 14, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 15, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 13, 5, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 16, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 17, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 18, 6, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 7, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 19, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 20, 7, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES (9, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES (8, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES (7, 8, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 3, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 11, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 10, 9, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 22, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 23, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 3, 10, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 24, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 25, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 15, 11, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 26, 12, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 27, 12, '2024-01-01 00:00:00');
+INSERT INTO `composition_menu` (`id_plat`, `id_menu`, `date_composition`) VALUES ( 28, 12, '2024-01-01 00:00:00');
+
+INSERT INTO `ville` ( `Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Clef-Vallée-d\'Eure', 27490, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` ( `Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Autheuil-Authouillet', 27490, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Cailly-sur-Eure', 27490, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Ailly', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Le Val d\'Hazey', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Fontaine-Bellenger', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Gaillon', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Saint-Pierre-la-Garenne', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Saint-Julien-de-la-Liègue', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Heudebouville', 27600, '2024-01-01 00:00:00', NULL);
+INSERT INTO `ville` (`Nom_ville`, `CP_ville`, `date_integ`, `date_sortie`) VALUES ('Saint-Aubin-sur-Gaillon', 27600, '2024-01-01 00:00:00', NULL);

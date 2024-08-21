@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+
+</head>
+<body>
+<div id="header"></div>
+<p class="text-success fw-bold text-center fs-3 " style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.574);">
+    Votre localité est prise en charge par l'association ! <br>
+    Inscrivez-vous pour continuer.
+</p>
+<div class="container mt-1">
+
+    <header>
+        <h2>Inscription</h2>
+    </header>
+    <form id="registerForm" action="register" method="post">
+
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" maxlength="25" required>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" maxlength="50" required>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" maxlength="70" required>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" maxlength="20" required>
+
+        <label for="confirmPassword">Confirmer le mot de passe :</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" maxlength="20" required>
+        <button class="btn btn-success" type="submit" id="btn">S'inscrire</button>
+    </form>
+
+    <p class="text-danger text-center mt-3" id="registrationMessage"></p>
+
+    <script type="module" src="./view/registerView.js"></script>
+</div>
+<div id="footer"></div>
+</body>
+</html>

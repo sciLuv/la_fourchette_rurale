@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+
+</head>
+<body>
+<div id="header"></div>
+<div class="container pb-1">
+    <h2 class="mt-2">Inscription</h2>
+    <form id="registerForm" style="padding-top: 0px;">
+
+        <label for="verificationInput" class="fw-bold mb-4">Saisissez votre code postal :</label>
+        <input id="verificationInput" type="text" pattern="[0-9]{5}" maxlength="5" placeholder="Entrez votre code postal à 5 chiffres" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5)" required>
+        <button class="btn btn-success mt-5" type="submit" id="btn">Voir si ma localité est prise en charge par l'association</button>
+    </form>
+
+    <p id="codePostalMessage" class="mt-5 text-danger text-center fw-bold undisplayed">
+        Votre localité n'est pas encore prise en charge par l'association !
+    </p>
+
+</div>
+<div id="footer"></div>
+<script type="module" src="./view/beforeRegisterView.js"></script>
+</body>
+</html>

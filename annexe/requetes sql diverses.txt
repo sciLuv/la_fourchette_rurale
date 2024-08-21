@@ -1,0 +1,45 @@
+SELECT dcom.id_plat, dcom.Pla_id_plat, dcom.Pla_id_plat2, dcom.date_effective_repas, c.livraison_effective FROM adh
+INNER JOIN commande com ON adh.id_adherent = com.id_adherent
+INNER JOIN detail_com dcom ON com.id_commande = dcom.id_commande
+INNER JOIN colis c ON dcom.id_colis = c.id_colis
+WHERE adh.id_adherent = 2
+AND c.livraison_effective > '2024-01-01 00:00:01'
+AND c.livraison_effective < '2024-01-06 00:00:01';
+
+
+SELECT dcom.id_plat, dcom.Pla_id_plat, dcom.Pla_id_plat2, dcom.date_effective_repas, dcom.Date_de_reglement FROM adh
+INNER JOIN commande com ON adh.id_adherent = com.id_adherent
+INNER JOIN detail_com dcom ON com.id_commande = dcom.id_commande
+INNER JOIN colis c ON dcom.id_colis = c.id_colis
+INNER JOIN plat p ON dcom.id_plat = p.id_plat
+WHERE adh.id_adherent = 2;
+
+
+UPDATE detail_com SET detail_com.Date_de_reglement = NULL
+WHERE detail_com.Id_detail_com = 1;
+
+
+{
+"id":15,
+"gender":1,
+"diet":3,
+"selectedFood":3,
+"phone":648886172,
+"birthdate":"1992-04-18",
+"town":6,
+"deliveryDays":[
+2,
+3
+],
+"street":"46c rue bertaux",
+"deliveryInformation":"porte au fond du couloire du rez-de-chaussée",
+"billAdress":"77610 Fontenay-trésigny Rue bertaux 46c",
+"membershipType":1,
+"numCarte":1478147814781478,
+"porteurCarte":"Liance",
+"dateCarte":"2026-12-05",
+"membershipBegin":"2024-03-07",
+"membershipEnd":"2024-04-06"
+}
+
+{"id":37,"gender":1,"diet":3,"selectedFood":3,"phone":648886172,"birthdate":"1992-04-18","town":6,"deliveryDays":[2,3],"street":"46c rue bertaux","deliveryInformation":"porte au fond du couloir","billAdress":"77610 fontenay-trésigny rue bertaux 46c","membershipType":1,"numCarte":147814781478,"porteurCarte":"Liance","dateCarte":"1992-04-18","membershipBegin":"2024-03-06","membershipEnd":"2024-04-05"}

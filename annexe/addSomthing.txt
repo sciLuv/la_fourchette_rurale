@@ -1,0 +1,195 @@
+INSERT INTO genre (libelle_genre) VALUES
+('homme'),
+('femme'),
+('autre');
+
+INSERT INTO regime_alimentaire (nom, debut_prise_en_charge, fin_prise_en_charge) VALUES
+('végétarien', '2024-01-01', NULL),
+('sans porc', '2024-01-01', NULL),
+('défaut', '2024-01-01', NULL);
+
+INSERT INTO specificite_alimentaire (nom, debut_prise_en_charge, fin_prise_en_charge) VALUES
+('appauvrit en sel', '2024-01-01', NULL),
+('appauvrit en sucre', '2024-01-01', NULL),
+('appauvrit en gluten', '2024-01-01', NULL);
+
+INSERT INTO type_repas (libelle_repas) VALUES
+('1'),
+('2');
+
+INSERT INTO Ville (Nom_ville, CP_ville, date_integ) VALUES
+('Provins', '77000', '2024-01-01'),
+('Chessy', '77000', '2024-01-01'),
+('Paris', '77100', '2024-01-01'),
+('Marseille', '77100', '2024-01-01'),
+('Bussy-saint-georges', '77200', '2024-01-01'),
+('Fontenay-trésigny', '77200', '2024-01-01'),
+('Melun', '77300', '2024-01-01'),
+('Marle-en-Brie', '77300', '2024-01-01'),
+('Sarcelle', '77400', '2024-01-01'),
+('bof', '77400', '2024-01-01');
+
+INSERT INTO livreur (nom, prenom, mot_de_passe) VALUES
+('Dupont', 'Antoine', 'DA123' ),
+('Leclerc', 'Marie ', 'LM123'),
+('Martin', 'Julien', 'MJ123');
+
+INSERT INTO type_plat (typ_id_type_plat, type_plat, tarif, Date_de_retrait) VALUES
+(NULL, 'entrée', '5', '2024-02-01'),
+(NULL, 'plat_principal', '11', '2024-02-01'),
+(NULL, 'dessert', '4', '2024-02-01');
+
+INSERT INTO type_adhesion (typ_id_type_adhesion, nom, duree, tarif) VALUES
+(NULL, 'mensuelle', 30, 10),
+(NULL, 'annuelle', 365, 100);
+
+INSERT INTO motif_echec_livraison (motif) VALUES
+('Adhérent absent'),
+('Adresse introuvable'),
+('Colis endommagé'),
+('Refus du colis'),
+('Problème d’accès à l’adresse');
+
+INSERT INTO menu (Caracteristique_type, nom, creation, retrait) VALUES
+('vegétarien', 'plaisir de la nature','2024-01-01', '2024-01-03'),
+('defaut', 'delice de la mer','2024-01-01', '2024-01-03'),
+('vegétarien', 'le fromage dans tout ses états','2024-01-01', '2024-01-03'),
+('defaut', 'la viande au rendez-vous', '2024-01-01', '2024-01-03'),
+('defaut', 'kfc style', '2024-01-01', '2024-01-03');
+
+INSERT INTO colis (id_echec_livraison, id_tournee, livraison_prevu, livraison_effective, numero_colis) VALUES
+(null, null, '2024-01-03', '2024-01-04', 1),
+(null, null, '2024-01-03', '2024-01-03', 2),
+(null, null, '2024-01-03', '2024-01-05', 3);
+
+INSERT INTO jour_semaine (libelle_jour) VALUES
+('lundi'),
+('Mercredi'),
+('Vendredi');
+
+INSERT INTO ADH (nom, prenom, mail, mot_de_passe) VALUES
+('Dupont', 'Jean', 'jean.dupont@example.com', 'motdepasse1'),
+('Martin', 'Marie', 'marie.martin@example.com', 'motdepasse2'),
+('Dubois', 'Pierre', 'pierre.dubois@example.com', 'motdepasse3'),
+('Lefebvre', 'Sophie', 'sophie.lefebvre@example.com', 'motdepasse4'),
+('Moreau', 'Julie', 'julie.moreau@example.com', 'motdepasse5');
+
+
+INSERT INTO ADH (id_genre, id_regime_alimentaire, ID_ville, Vil_ID_ville, nom, prenom, mail, telephone, naissance, rue_livraison, information_supplementaire, adresse_facture, mot_de_passe, numero_carte_bancaire, date_validite_carte_bancaire, nom_porteur_carte_bancaire)
+VALUES
+(1, 1, 1, 1, 'Dupont', 'Jean', 'jean.dupont@example.com', 0234567890, '1980-05-15', '123 Rue de la Liberté', 'Informations supplémentaires pour Jean', '123 Rue de la Facturation', 'motdepasseJean123', 1234567890123456, '2026-01-01', 'Jean Dupont'),
+(2, 2, 2, 2, 'Martin', 'Marie', 'marie.martin@example.com', 0876543210, '1975-09-20', '456 Avenue de la Paix', 'Informations supplémentaires pour Marie', '456 Avenue de la Facturation', 'motdepasseMarie456', 6543210987654321, '2027-03-01', 'Marie Martin'),
+(1, 1, 1, 1, 'Dubois', 'Pierre', 'pierre.dubois@example.com', 0567890123, '1983-03-10', '789 Boulevard de la République', 'Informations supplémentaires pour Pierre', '789 Boulevard de la Facturation', 'motdepassePierre789', 9876543210987654, '2028-02-15', 'Pierre Dubois');
+
+
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 1, '2024-02-17 12:21:09', '2024-03-17 12:21:25', '2024-03-07 12:23:44', NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (2, 2, '2024-02-24 12:24:53', '2025-02-24 12:28:07', NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 3, '2024-02-25 12:27:27', '2024-03-25 12:28:54', '2024-02-27 12:29:05', NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 4, '2024-02-26 12:28:41', '2024-03-26 12:30:03', NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (2, 5, '2024-02-27 12:31:29', NULL, NULL, NULL, NULL);
+INSERT INTO adhesion (id_type_adhesion, id_adherent, debut, fin_prevu, fin_effective, date_paiement, date_emission_facture) VALUES (1, 6, '2024-02-17 12:31:47', NULL, NULL, NULL, NULL);
+
+INSERT INTO menu_ouvert_selection (id_type_repas, id_menu, ouverture_selection, fermeture_selection, menu_defaut, position_jour)
+VALUES
+(1, 1, '2024-03-01 08:00:00', '2024-03-01 10:00:00', TRUE, 1),
+(1, 2, '2024-03-01 12:00:00', '2024-03-01 14:00:00', FALSE, 2),
+(2, 3, '2024-03-01 18:00:00', '2024-03-01 20:00:00', TRUE, 3),
+(1, 4, '2024-03-02 08:00:00', '2024-03-02 10:00:00', FALSE, 1),
+(2, 5, '2024-03-02 12:00:00', '2024-03-02 14:00:00', FALSE, 2),
+(1, 6, '2024-03-02 18:00:00', '2024-03-02 20:00:00', TRUE, 3),
+(2, 7, '2024-03-03 08:00:00', '2024-03-03 10:00:00', TRUE, 1),
+(1, 8, '2024-03-03 12:00:00', '2024-03-03 14:00:00', FALSE, 2);
+
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (1, 1, '2024-02-24 12:34:38', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (2, 2, '2024-02-25 12:34:55', '2024-02-26 12:34:59');
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (2, 3, '2024-02-26 12:37:26', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (3, 4, '2024-02-27 12:37:50', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 5, '2024-02-27 12:38:50', '2024-02-27 13:39:13');
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 1, '2024-02-27 13:45:35', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 2, '2024-02-27 12:40:45', NULL);
+INSERT INTO commande (id_adherent, id_menu, validation_com, annulation_com) VALUES (4, 5, '2024-02-27 12:41:56', NULL);
+
+
+INSERT INTO plat (id_regime_alimentaire, id_type_plat, nom_plat, description, url_image, date_entree, date_retrait) VALUES
+(3, 3, 'Risotto aux Légumes', 'Risotto crémeux avec des légumes de saison et du parmesan râpé.', 'https://i.pinimg.com/originals/b1/8e/9d/b18e9d2db721400f6827c7e8b149db24.jpg', '2024-01-05', NULL),
+(3, 3, 'Salade d\'Épinards et de Feta', 'Salade d\'épinards frais avec des morceaux de feta, des tomates cerises et une vinaigrette balsamique.', 'https://static.750g.com/images/1200-630/62e4711cfc4857affa4b22c71a06b38e/salade-de-crudites-fraicheur.jpg', '2024-01-05', '2024-01-06');
+
+-- Avec toutes les informations nécessaires
+INSERT INTO tournee (id_livreur, numero, date, debut_tournee, fin_tournee) VALUES
+(1, 'T001', '2024-02-27', '2024-02-27 08:00:00', '2024-02-27 12:00:00'),
+(2, 'T002', '2024-02-28', '2024-02-28 09:00:00', '2024-02-28 14:00:00');
+
+-- Sans fin_tournée
+INSERT INTO tournee (id_livreur, numero, date, debut_tournee) VALUES
+(3, 'T003', '2024-03-01', '2024-03-01 10:00:00'),
+(4, 'T004', '2024-03-02', '2024-03-02 11:00:00');
+
+-- Sans début_tournée et fin_tournee
+INSERT INTO tournee (id_livreur, numero, date) VALUES
+(5, 'T005', '2024-03-03'),
+(6, 'T006', '2024-03-04');
+
+-- Autres exemples
+INSERT INTO tournee (id_livreur, numero, date, debut_tournee) VALUES
+(7, 'T007', '2024-03-05', '2024-03-05 08:30:00'),
+(8, 'T008', '2024-03-06', '2024-03-06 09:00:00');
+
+
+INSERT INTO distribuer (ID_ville, id_tournee) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 3),
+(4, 4);
+INSERT INTO prefere (id_adherent, id_specificite_alimentaire) VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(3, 3),
+(4, 1);
+
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 1, 'Salade Fraîcheur Méditerranéenne', 'Découvrez notre Salade Fraîcheur Méditerranéenne.', 'https://static.750g.com/images/1200-630/62e4711cfc4857affa4b22c71a06b38e/salade-de-crudites-fraicheur.jpg', '2024-01-05 00:00:00', '2024-01-06 00:00:00');
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 1, 'Salade de Poulet César', 'Salade de laitue romaine, poulet grillé, croûtons à l\'ail, parmesan et sauce César.', 'https://static.750g.com/images/1200-630/62e4711cfc4857affa4b22c71a06b38e/salade-de-crudites-fraicheur.jpg', '2024-01-05 00:00:00', '2024-01-06 00:00:00');
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Salade d\'Épinards et de Feta', 'Salade d\'épinards frais avec des morceaux de feta, des tomates cerises et une vinaigrette balsamique.', 'https://static.750g.com/images/1200-630/62e4711cfc4857affa4b22c71a06b38e/salade-de-crudites-fraicheur.jpg', '2024-01-05 00:00:00', '2024-01-06 00:00:00');
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 1, 'Salade de Crudités ', 'Salade de crudités avec tomates, avocat, mangue', 'https://www.fourchette-et-bikini.fr/sites/default/files/styles/1200x675/public/migration-images/11a2183f750c1b31dc4cc4f96892ba71.jpg', NULL, NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Purée Délice Marin', 'Dégustez notre Purée Délice Marin, une fusion exquise de purée onctueuse et de délicieux morceaux de poisson fraîchement préparés.', 'https://i.pinimg.com/originals/b1/8e/9d/b18e9d2db721400f6827c7e8b149db24.jpg', '2024-01-05 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Filet de Saumon Grillé', 'Filet de saumon grillé avec un mélange d\'herbes fraîches et servi avec une sauce au citron.', 'https://i.pinimg.com/originals/b1/8e/9d/b18e9d2db721400f6827c7e8b149db24.jpg', '2024-01-05 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 2, 'Steak de Boeuf Grillé', 'Steak de boeuf grillé servi avec des pommes de terre rôties et des légumes de saison.', 'https://i.pinimg.com/originals/b1/8e/9d/b18e9d2db721400f6827c7e8b149db24.jpg', '2024-01-05 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Pâtes aux Champignons', 'Pâtes fraîches avec une sauce crémeuse aux champignons et au parmesan.', 'https://static.750g.com/images/1200-630/62e4711cfc4857affa4b22c71a06b38e/salade-de-crudites-fraicheur.jpg', '2024-01-05 00:00:00', '2024-01-06 00:00:00');
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Risotto aux Légumes', 'Risotto crémeux avec des légumes de saison et du parmesan râpé.', 'https://i.pinimg.com/originals/b1/8e/9d/b18e9d2db721400f6827c7e8b149db24.jpg', '2024-01-05 00:00:00', NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 2, 'Curry de lentilles corail et pois chiches', 'Curry végétarien de lentilles corail et de pois chiches accompagné de tomates', 'https://www.unileverfoodsolutions.fr/dam/global-ufs/mcos/france/knorr-futur-50-france/Curry%20de%20lentilles%20corail%20et%20pois%20chiches%20-%20Banni%C3%A8re.jpg', NULL, NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 2, 'Cassoulet traditionnel', 'Recette traditionnelle du cassoulet aux saucisses de Toulouse', 'https://static.750g.com/images/640-400/0ed2e88c83811daea7c60e278de11b08/adobestock-28409562.jpeg', NULL, NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (3, 3, 'Tiramisu au café', 'Tiramisu traidtionnel aux biscuits à la cuillère trempés dans du café', 'https://www.galbani.fr/wp-content/uploads/2020/10/Tiramisu-au-caf%C3%A9-1.jpg', NULL, NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (1, 3, 'Tiramisu au café', 'Tiramisu traidtionnel aux biscuits à la cuillère trempés dans du café', 'https://www.galbani.fr/wp-content/uploads/2020/10/Tiramisu-au-caf%C3%A9-1.jpg', NULL, NULL);
+INSERT INTO `plat` (`id_regime_alimentaire`, `id_type_plat`, `nom_plat`, `description`, `url_image`, `date_entree`, `date_retrait`) VALUES (2, 3, 'Tiramisu au café', 'Tiramisu traidtionnel aux biscuits à la cuillère trempés dans du café', 'https://www.galbani.fr/wp-content/uploads/2020/10/Tiramisu-au-caf%C3%A9-1.jpg', NULL, NULL);
+
+INSERT INTO detail_com (id_colis, id_commande, id_plat, id_menu_ouvert_selection, Pla_id_plat, Pla_id_plat2, Date_choix, date_validation_choix, date_effective_repas, Date_de_reglement, date_emission_facture) VALUES
+(1, 1, 2, 1, 1, 1, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-02-10'),
+(2, 2, 5, 2, 2, 2, '2024-01-05','2024-01-05', '2024-01-08', '2024-01-10', '2024-02-10'),
+(3, 3, 8, 3, 3, 3, '2024-01-05', '2024-01-05', '2024-01-08', '2024-01-10', '2024-02-10');
+
+
+INSERT INTO disponibilite_livraison (id_adherent, id_jour, Date_de_choix, Date_de_retrait) VALUES
+(6, 1, '2024-02-27 08:00:00', null),
+(6, 2, '2024-02-28 09:00:00', '2024-02-28 14:00:00'),
+(6, 3, '2024-02-29 10:00:00', '2024-02-29 13:00:00'),
+(7, 1, '2024-02-27 08:30:00', null),
+(7, 2, '2024-02-28 10:00:00', '2024-02-28 13:00:00'),
+(7, 3, '2024-02-29 11:00:00', '2024-02-29 14:00:00'),
+(8, 1, '2024-02-27 09:00:00', null),
+(8, 2, '2024-02-28 11:00:00', '2024-02-28 15:00:00'),
+(8, 3, '2024-02-29 12:00:00', '2024-02-29 16:00:00');
+
+INSERT INTO composition_menu (id_plat, id_menu, date_composition) VALUES
+(6, 1, '2024-01-05'),
+(10, 1, '2024-01-05'),
+(15, 1, '2024-01-05'),
+(4, 2, '2024-01-09'),
+(8, 2, '2024-01-09'),
+(16, 2, '2024-01-09'),
+(5, 3, '2024-01-12'),
+(10,3, '2024-01-12'),
+(15,3, '2024-01-12'),
+(4, 4, '2024-01-12'),
+(9,4, '2024-01-12'),
+(14, 4, '2024-01-12');

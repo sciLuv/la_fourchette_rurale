@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La fourchette rurale</title>
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/styleLudi.css">
+
+    <script src="./arch/arch.js" async></script>
+</head>
+
+<body class="body-open-menus">
+
+<!--HEADER-->
+<div id="header" class="header-nav-container"></div>
+<!-- fin header -->
+
+<main class="main-open-menus container mt-5">
+    <h2 class="mt-4">Gérer la sélection des menus pour les adhérents</h2>
+    <!-- form -->
+    <form id="publication-menu">
+        <!-- Période de Sélection -->
+        <section class="date-config">
+            <h4>Définir les dates de la période de sélection pour les adhérents </h4>
+            <label for="start-date-picker">Début de la période de sélection</label>
+            <input type="date" id="start-date-picker">
+            <br>
+            <label for="end-date-picker">Fin de la période de sélection</label>
+            <input type="date" id="end-date-picker">
+        </section>
+
+        <section>
+            <h4>Choisir les menus à ouvrir à la sélection</h4>
+                <div id="choice-config">
+                    <div>Jour : <span id="day"> <!-- faire apparaître le numéro du jour en js --> </span>
+                    Repas : <span id="meal-type"> <!-- faire apparaître le type de repas en js --> </span>
+                    Régime : <span id="diet-name"> <!-- faire apparaître le régime en js --> </span></div>
+                </div>
+
+                <div id="dropdown-menus">
+                    <input type="text" placeholder="Rechercher un menu" class="search-input">
+                    <ul id="menu-list"></ul>
+                </div>
+
+                <!-- Afficher sélection -->
+                <h4>Récapitulatif de la sélection et choix du menu par défaut</h4>
+                <div id="choices-recap">
+                    <p>Cliquez sur le menu que vous souhaitez définir par défaut</p>
+                    <div id="display-menu-choices"></div>
+                </div>
+
+        </section>
+        <div id="error"></div>
+        <div class = "btn-Ludi">
+        <button id="validate-diet-meal"> Valider ma sélection et passer à la suivante </button>
+        <button id="validate-all" hidden> Valider toutes mes sélections </button>
+        </div>
+    </form>
+
+</main>
+
+<!--footer-->
+<div id="footer" class="mt-5"></div>
+<!-- fin footer-->
+
+</body>
+<script src="scripts/publication.js" async ></script>
+
+</html>

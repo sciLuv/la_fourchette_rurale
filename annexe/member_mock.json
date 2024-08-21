@@ -1,0 +1,11 @@
+{
+  "id" : 1,
+  "gender" : 1,
+  "diet" : 1,
+  "firstname" : "robert",
+  "lastname" : "badin",
+  "mail" : "mail@mail.com",
+  "deliveryDates" : {
+    "0" : "mercredi"
+  }
+}

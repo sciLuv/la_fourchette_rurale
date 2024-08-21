@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <style type="text/css">
+                @font-face {
+          font-family: dansingScript;
+          src: url("../font/DancingScript-Bold.otf");
+        }
+        .container-lumbo{
+            position: relative;
+        }
+        .lunbo{
+            position: absolute;
+            width: 100%;
+            height: 700px;
+        }
+        .lunbo img{
+            width: 100%;
+            height:100%;
+            object-fit: cover;
+        }
+        .titrehome{
+            text-align: center;
+            color: rgb(174, 0, 0);
+            font-size: 400%;
+            margin: 10px;
+            font-family: dansingScript;
+            font-weight: bolder;
+            text-shadow: rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px, rgb(255, 255, 255) 0px 0px 9px;
+        }
+        .lumbo2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-nav, footer{
+            z-index: 1000 !important;
+        }
+        footer{
+            position: relative;
+            transform: translateY(1000px);
+            z-index: 1000 !important;
+        }
+        
+        
+    </style>
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div id="header"></div>
+<main class="main">
+
+        <!--轮播图模块 -->
+        <div class="container-lumbo">
+            <div class="lunbo">
+                <img id="lunbo_img" src="./imgs/img3.jpeg" >
+            </div>
+            <div class="lunbo lumbo2">
+                <div class=" titrehome">
+                    Des saveurs locales, livrées avec amour.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-5" style="height: 50px; background-color: rgba(240, 240, 240, 0); z-index: 200; position: relative; transform: translateY(700px); box-shadow: -5px 32px 17px -30px rgba(150, 150, 150, 1) inset;
+        "></div>
+
+<div style="transform: translateY(750px); text-align : center;">
+
+    <h2 style="color: rgb(174, 0, 0);">Qui sommes nous ?</h2>
+    <p class="m-5 fs-4 ">Au cœur de la mission de La Fourchette Rurale réside un engagement profond envers ses adhérents et les communautés qu'elle dessert. Consciente des défis auxquels sont confrontées les personnes âgées et à mobilité réduite vivant dans la campagne normande, l'association déploie des efforts considérables pour établir des relations significatives et durables avec ses bénéficiaires.</p>
+
+</div>   
+
+<div style="transform: translateY(950px); text-align : center;">
+
+    <button class="btn btn-success fs-4 p-3 " style="box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 1);"><a href="beforeRegister.html" style="color: white;">Adhérer à la fourchette rurale</a></button>
+    
+</div>   <!-- Js代码 -->
+
+</main>
+<div id="footer"></div>
+<script type="module" src="./view/HomeView.js"></script>
+<script>
+    var index = 1;
+      function lunbo(){
+          index ++ ;
+          //判断index是否大于3
+          if(index > 5){
+              index = 1;
+          }
+          //获取img对象
+          var img = document.getElementById("lunbo_img");
+          img.src = "./imgs/img"+index+".jpeg";
+      }
+      //2.定义定时器
+      setInterval(lunbo,2000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+
+</head>
+<body>
+    <div id="header"></div>
+<div class="container">
+
+    <!-- Indicateurs de progression -->
+<div id="progress-indicators">
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator"></div>
+    <div class="progress-indicator"></div>
+</div>
+
+        <h2>Adhésion</h2>
+        <h3>Livraison</h3>
+
+    <form id="deliveryForm" action="livraison" method="post">
+
+        <label for="ville">Ville</label>
+        <select id="ville" name="ville" required>
+        </select>
+
+        <label for="rueLivraison">N° et libellé de la voie</label>
+        <input type="rue" id="rueLivraison" name="rueLivraison" required>
+
+        <label for="disponibiliteLivraison">Disponibilité de livraison</label>
+        <select id="disponibiliteLivraison" name="disponibiliteLivraison" required multiple>
+
+            <!-- Ajoutez d'autres options si nécessaire -->
+        </select>
+
+        <label for="informations">Informations complémentaires</label>
+        <input type="info" id="informations" name="informations">
+
+<div class="navigation-buttons">
+    <button class="btn btn-secondary" type="button" id="prevPageButton" >Page Précédente</button>
+    <button class="btn btn-success" type="submit" id="nextPageButton" >Continuer l'Adhésion</button>
+</div>
+
+    </form>
+
+    <p id="deliveryMessage"></p>
+    <div id="header"></div>
+    <script type="module" src="./view/livraisonView.js"></script>
+</div>
+</body>
+</html>

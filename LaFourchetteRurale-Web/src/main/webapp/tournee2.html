@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="controllers/getCities.js" async></script>
+    <script src="controllers/getDeliveryMans.js" async></script>
+    <script src="controllers/roundController.js" async></script>
+
+
+
+</head>
+
+<body>
+    <div id="header"></div>
+    <main class="main">
+        <article class="container mt-5" style="min-height: 580px;">
+            <h2 class="border-bottom border-secondary mb-4 pb-2">Tournée</h2>
+            <div class="container-tournee2">
+                <div>
+                    <section>
+                        <h3>Livreur associé</h3>
+                        <div class="associate-deliveryman table-line-container">
+                            <select id="deliveryMan" name="deliveryMan" required>
+                                <option value="1">Remi</option>
+                                <option value="2">Ying</option>
+                                <option value="3">Ludivine</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="mt-4">Villes associées à la tournée</h3>
+                        <div class="table associateCities">
+                            <!--                            <div class="table-line-container city-container ass">-->
+                            <!--                                <span class="table-text">ville 1</span>-->
+                            <!--                                <div class="table-line-image"><img class="delete-img" src="./imgs/plus.svg" alt="">-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                        </div>
+                    </section>
+                </div>
+                <div class="container-tournee2-undercontainer">
+
+                    <section>
+                        <h3>Villes à livrer</h3>
+                        <div class="table" id="city">
+                            <!--                            <div class="table-line-container villeAlivrer">-->
+                            <!--                                <button class="btn btn-success little-btn addCity">ajouter</button>-->
+                            <!--                                <span class="table-text cityToDeliver" name="ville">Ville 2 </span>-->
+                            <!--                            </div>-->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-3" id="ajouterTourneeButton">Ajouter la tournée</button>
+        </article>
+        <hr>
+        <article class="container mt-5">
+            <h2>Tournées prêtes</h2>
+
+            <div class="table tournees-pretes" id="tournees-pretes">
+                <!--          <div class="table-line-container tournee">
+                    <span class="table-text">tournée 1</span>
+                    <div class="flex">
+                        <button class="little-btn btn btn-warning bg-warning"> <span>modifier</span> </button>
+                        <button class="little-btn btn btn-danger bg-danger"> supprimer </button>
+                    </div>
+                </div> -->
+
+            </div>
+            <button class="btn btn-success mt-3 mb-5" id="termine">Terminer la constitution de la tournée</button>
+            <div class="d-flex align-items-center justify-content-center undisplayed" id="messageContainer">
+                <p id="message" class="fw-bold text-danger">Attention ! Il reste des villes à livrer. </p>
+            </div>
+            <div class="undisplayed" id="info-retour">
+                <div class="d-flex align-items-center justify-content-center border-top">
+                    <p class="text-success text-align-center mt-5 fs-3">Vos tournées ont bien été créées</p>
+                    <button class="btn btn-info mt-3 fs-5 ms-3" id="pagePrecedente"
+                        style="height: 50px; transform: translateY(10px);">Retourner à la page
+                        précédente</button>
+                </div>
+            </div>
+        </article>
+    </main>
+    <div id="footer"></div>
+</body>
+
+</html>

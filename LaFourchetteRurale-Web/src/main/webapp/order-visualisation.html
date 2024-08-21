@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="header"></div>
+    <main class="main container">
+        <div class="d-flex mt-5 justify-content-between delivery-man-round-header-part">
+            <div class="d-flex align-items-center">
+                <h2 class="me-3">Mes commandes</h2>
+            </div>
+        </div>
+        <div class="delivery-man-round mt-5">
+            <div class="table" id="order-container-line">
+                <div class="table-header" >
+                    <div class="table-line-container table-header">
+                        <span class="table-text">N° facture</span>
+                        <span class="table-text">Date</span>
+                        <span class="table-text">Montant</span>
+                        <span class="table-text">Paiement</span>
+                        <div class="empty-space-for-table"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script type="module" src="./view/orderView.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container" style="margin-bottom:-20px;">
+        <h2>Votre adhésion</h2>
+        <span class="fw-bold">Type d'adhésion :</span> <span id="membershipTypeDisplaying"></span><br>
+        <span class="fw-bold">Début de l'adhésion :</span> <span id="membershipBeginning"></span> <br>
+        <span class="fw-bold">Fin d'adhésion :</span> <span id="membershipEnding"></span> <br>
+        <span class="fw-bold">Prix de l'adhésion :</span> <span id="membershipPrice"></span>€
+    </div>
+<div class="container">
+
+        <h2>Paiement par carte</h2>
+
+        <div id="facturationForm">
+            <label for="numcarte">Numéro de carte</label>
+            <input type="number" id="numcarte" name="numcarte" required maxlength="16">
+        
+            <label for="porteur">Nom du porteur de carte</label>
+            <input type="text" id="porteur" name="porteur" required maxlength="20">
+        
+            <label for="date">Date de validité</label>
+            <input type="date" id="date" name="date" required>
+        
+            <label for="cryptogramme">Cryptogramme</label>
+            <input type="number" id="cryptogramme" name="cryptogramme" required maxlength="3" minlength="3">
+        
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="savePaymentData">
+                <label class="form-check-label" for="savePaymentData">Enregistrer les données de paiement</label>
+            </div>
+<p id="saveMessage" style="color: green; display: none;">Les données de paiement seront enregistrées.</p>
+            <div class="navigation-buttons mt-4">
+                <button class="btn btn-secondary" type="button" id="prevPageButton">Page précédente</button>
+                <button class="btn btn-success" id="nextPageButton">Passer au paiement</button>
+            </div>
+            
+        </div>
+        
+    <p id="paiementMessage"></p>
+</div>
+
+<div id="footer"></div>
+<script type="module" src="./view/paymentMembershipTypeView.js"></script>
+</body>
+</html>

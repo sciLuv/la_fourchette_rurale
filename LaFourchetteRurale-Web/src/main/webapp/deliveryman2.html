@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="header"></div>
+    <main class="main container">
+        <div class="d-flex mt-5 justify-content-between delivery-man-round-header-part">
+            <div class="d-flex align-items-center">
+                <h2 class="me-3">Tournée n°<span id="numTournee"></span></h2>
+            <span id="dateDisplay">02/03/24</span>
+            </div>
+            <div class="button">
+                <button class="btn btn-success ms-5" id="beginTournee">Commencer la tournée</button>
+            </div>
+        </div>
+        <div class="delivery-man-round mt-5">
+            <div class="table" id="tableDetailDelivery">
+                <div class="table-header">
+                    <div class="table-line-container table-header">
+                        <span class="table-text">Vos colis</span>
+                        <span class="table-text">Adresse</span>
+                        <span class="table-text">Adhérent</span>
+                        <div class="empty-space-for-table"></div>
+                    </div>
+                </div>
+<!--                 <div class="table-line-container ">
+                    <span class="table-text col1">colis 1</span>
+                    <span class="table-text col2">128 rue Tuchoutage</span>
+                    <span class="table-text col3">Jean piere mokastag</span>
+                    <div class="flex">
+                        <button class="little-btn btn btn-success bg-success"> <span>Voir</span> </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mt-5 undisplayed" id="end-tournee-container">
+            <button class="btn btn-primary btn-validation-order m-3" id="EndTournee">Finir la tournée</button>
+        </div>
+        <div class="d-flex align-items-center justify-content-center mt-5" >
+            <p id="message"></p>
+        </div>
+    </main>
+    <div id="footer"></div>
+    <script type="module" src="./view/deliveryman2View.js"></script>
+</body>
+</html>

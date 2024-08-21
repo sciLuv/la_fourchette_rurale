@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="header"></div>
+    <main class="main container">
+<div class="m-5 ms-1 me-1 bg-light">
+    <div class="border-top border-dark border-3 mb-3 pt-2 ps-2 d-flex">
+        <span class="fw-bold me-4">Adhérent :</span><span id="adhName">Rémi Liance</span>
+    </div >
+    <div class="border-top border-dark border-3 mb-3 pt-2 ps-2">
+        <span class="fw-bold me-4">Tel :</span><span id="phone">06-48-88-61-72</span>
+    </div>
+    <div class="border-top border-dark border-3 mb-3 pt-2 ps-2">
+        <span class="fw-bold me-4">Adresse de livraison :</span><span id="adress"></span>
+    </div>
+    <div class="border-top border-dark border-3 mb-3 pt-2 ps-2">
+        <span class="fw-bold me-4">Autre :</span><span id="other">porte du fond</span>
+    </div>
+</div>
+<div class="d-flex justify-content-around border-top pt-4 flex-wrap">
+    <div>
+        <h3>État de livraison</h3>
+        <div class="table deliverymanTableContainer ">
+            <div class="table-line-container deliverymanTable">
+                <span class="table-text" >livré</span>
+                <input type="checkbox" id="liv">
+            </div>
+            <div class="table-line-container deliverymanTable">
+                <span class="table-text">non livré</span>
+                <input type="checkbox" id="noLiv">
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3>Raison de non-livraison</h3>
+        <div class="table little-opacity" id="noLivReason">
+            <div class="table-line-container">
+                <span class="table-text checkboxNonLivraison" >Adhérent absent</span>
+                <input type="checkbox" class="checkboxNonLivraison" idEchec="1">
+            </div>
+            <div class="table-line-container">
+                <span class="table-text checkboxNonLivraison">Adresse introuvable</span>
+                <input type="checkbox" class="checkboxNonLivraison" idEchec="2">
+            </div>
+            <div class="table-line-container ">
+                <span class="table-text checkboxNonLivraison" >Colis endommagé</span>
+                <input type="checkbox" class="checkboxNonLivraison" idEchec="3">
+            </div>
+            <div class="table-line-container" >
+                <span class="table-text checkboxNonLivraison" >Refus du colis</span>
+                <input type="checkbox" class="checkboxNonLivraison" idEchec="4">
+            </div>
+            <div class="table-line-container" >
+                <span class="table-text checkboxNonLivraison" >accès à l'adresse</span>
+                <input type="checkbox" class="checkboxNonLivraison" idEchec="5">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center mt-5">
+    <button class="btn btn-success me-5 pe-5 ps-5" id="sendInfo">Valider</button>
+</div>
+<div class="d-flex justify-content-center mt-5">
+    <p id="message"></p>
+</div>
+    </main>
+    <div id="footer"></div>
+    <script type="module" src="./view/deliveryman3View.js"></script>
+</body>
+</html>

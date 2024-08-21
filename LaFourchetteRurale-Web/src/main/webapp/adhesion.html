@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+
+
+
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style-allan.css">
+</head>
+<body>
+
+<div id="header"></div>
+<div class="container">
+
+    <!-- Indicateurs de progression -->
+<div id="progress-indicators">
+    <div class="progress-indicator filled"></div>
+    <div class="progress-indicator"></div>
+    <div class="progress-indicator"></div>
+    <div class="progress-indicator"></div>
+</div>
+
+    <h1>Adhésion</h1>
+    <form id="membershipForm" action="adherer" method="post">
+
+        <label for="genre">Genre</label>
+        <select id="genre" name="genre" required>
+            <option value="1">Homme</option>
+            <option value="2">Femme</option>
+            <option value="3">Autres</option>
+        </select>
+
+        <label for="dateNaissance">Date de Naissance</label>
+        <input type="date" id="dateNaissance" name="dateNaissance" required>
+
+        <label for="telephone">Numéro de Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" maxlength="10">
+
+        <label for="regimeAlimentaire">Régime Alimentaire</label>
+        <select id="regimeAlimentaire" name="regimeAlimentaire" required>
+        </select>
+
+        <label for="specificiteAlimentaire">Spécificité Alimentaire</label>
+        <select id="specificiteAlimentaire" name="specificiteAlimentaire">
+        </select>
+
+<div class="navigation-buttons">
+    <button class="btn btn-success" type="submit" id="nextPageButton">Continuer l'Adhésion</button>
+</div>
+
+    </form>
+
+    <p id="membershipMessage"></p>
+<script type="module" src="./view/membershipView1.js"></script>
+</div>
+<div id="footer"></div>
+</body>
+</html>

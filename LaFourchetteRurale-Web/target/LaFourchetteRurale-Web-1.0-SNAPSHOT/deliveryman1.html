@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La fourchette rurale</title>
+    <script src="./bootstraps/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./bootstraps/bootstrap.min.css">
+
+    <script src="./arch/arch.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./controllers/deliveryMan1.js" async></script>
+
+</head>
+
+<body>
+<div id="header"></div>
+<main class="main container">
+    <h2 class="mt-5">Vos tournées</h2>
+    <div class="delivery-man-round-selection-table-container" >
+        <div>
+            <div class="table-line-container">
+                <span class="table-text" id="vosTournees">Vos tournées</span>
+                <span class="table-text" id="date">Date</span>
+                <div class="empty-space-for-table"></div>
+            </div>
+        </div>
+        <div class="table table-deliveryman" id="tourneeInfo">
+
+        </div>
+
+    </div>
+</main>
+<div id="footer"></div>
+</body>
+
+</html>
