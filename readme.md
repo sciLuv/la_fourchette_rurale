@@ -32,3 +32,4 @@ Elle prend en charge différents profils d'utilisateur qu'elle reconnais dans un
 - `bdd_and_information.txt`: Ce fichier contient des informations supplémentaires et des configurations qui peuvent être nécessaires pour personnaliser ou mettre à jour les paramètres de l'application.
 - `LaFourchetteRurale_db.properties` : pour définir les information de connexion à la base de données
 
+![Image 1](read_me-img.png)
